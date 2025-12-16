@@ -61,9 +61,6 @@ def parse_args() -> argparse.Namespace:
 def collect_dataset(
     dataset_root: Path, bins_per_channel: int
 ) -> Tuple[np.ndarray, np.ndarray]:
-    """
-    Читает изображения из подготовленных папок и возвращает признаки и метки.
-    """
     features: List[np.ndarray] = []
     labels: List[str] = []
 
@@ -103,9 +100,6 @@ def collect_dataset(
 
 
 def build_model() -> Pipeline:
-    """
-    Возвращает sklearn-пайплайн: стандартизация -> логистическая регрессия.
-    """
     return Pipeline(
         steps=[
             ("scaler", StandardScaler()),

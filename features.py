@@ -10,21 +10,12 @@ IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp"}
 
 
 def iter_image_paths(root: Path) -> Iterable[Path]:
-    """
-    Обходит директорию рекурсивно и возвращает пути к изображениям.
-    """
     for path in root.rglob("*"):
         if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS:
             yield path
 
 
 def extract_image_features(image_path: Path, bins_per_channel: int = 16) -> np.ndarray:
-    """
-    Преобразует изображение в компактный набор числовых признаков.
-
-    Используем гистограммы по каждому цветовому каналу RGB, а также
-    средние/стандартные отклонения цветов и геометрические характеристики.
-    """
     if bins_per_channel <= 0:
         raise ValueError("Количество бинoв гистограммы должно быть > 0")
 
